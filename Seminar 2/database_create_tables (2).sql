@@ -201,14 +201,14 @@ CREATE TABLE rented_instrument (
   receipt_id varchar(100) UNIQUE NOT NULL,
   start_date timestamp NOT NULL,
   end_date timestamp,
-  person_id int NOT NULL,
+  student_id int NOT NULL,
   instrument_id int NOT NULL,
-  PRIMARY KEY (person_id, instrument_id),
+  PRIMARY KEY (student_id, instrument_id),
   CONSTRAINT fK_instrument
     FOREIGN KEY (instrument_id)
       REFERENCES physical_instruments(database_id),
 	constraint fk_person
-	foreign key (person_id)
+	foreign key (student_id)
 	references student(database_id)
 );
 
