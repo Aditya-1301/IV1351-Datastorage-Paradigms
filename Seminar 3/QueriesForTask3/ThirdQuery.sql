@@ -1,5 +1,5 @@
+--TASK 3 Third query
 
---TASK 3 third query
 CREATE VIEW OVERWORKED_EMPLOYEES AS
 SELECT 
 DISTINCT
@@ -22,6 +22,8 @@ FROM instructors
 join private_lesson on instructors.database_id = private_lesson.instructor_db_id
 join group_lesson on instructors.database_id = group_lesson.instructor_db_id
 join ensemble on instructors.database_id = ensemble.instructor_db_id
+join booking_table on instructors.database_id = booking_table.database_id
+WHERE EXTRACT(MONTH FROM date) = EXTRACT(MONTH FROM CURRENT_DATE)
+AND EXTRACT(YEAR FROM date) = EXTRACT(YEAR FROM CURRENT_DATE)
+AND OVERWORKED_EMPLOYEES.Total > 3
 ORDER BY "Total" DESC;
-
---Task 3 fourth query
