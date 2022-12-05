@@ -1,7 +1,7 @@
 -- Query 1 Test
 -- SELECT *
 -- FROM LESSONS_PER_MONTH
--- WHERE "Year" = 2021;
+-- WHERE "Year" = 2022;
 
 -- Query 2 Test
 -- SELECT *
@@ -10,7 +10,7 @@
 -- Query 3 Test
 -- SELECT *
 -- FROM OVERWORKED_EMPLOYEES
--- WHERE "Total" > 3;
+-- WHERE "Total" > 5;
 
 -- Query 4 Test
 -- SELECT *
