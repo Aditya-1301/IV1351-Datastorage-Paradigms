@@ -1,0 +1,17 @@
+-- Query 1 Test
+-- SELECT *
+-- FROM LESSONS_PER_MONTH
+-- WHERE "Year" = 2021;
+
+-- Query 2 Test
+-- SELECT *
+-- FROM NUMBER_OF_SIBLINGS;
+
+-- Query 3 Test
+-- SELECT *
+-- FROM OVERWORKED_EMPLOYEES
+-- WHERE "Total" > 3;
+
+-- Query 4 Test
+-- SELECT *
+-- FROM NEXT_WEEK_ENSEMBLE_LESSONS
