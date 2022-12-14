@@ -35,9 +35,15 @@ public class Controller {
         }
     }
 
+    /**
+     * Retrieves a list from the database with instruments that are available for rental
+     * @param instrumentType The type of the instrument. For example 'Guitar'. First letter should be capitalized.
+     * @return The list with available instruments.
+     * @throws InstrumentException if unable to retrieve the list with instruments
+     */
     public List<? extends InstrumentDTO> listInstrument(String instrumentType) throws InstrumentException {
         try {
-            List<? extends InstrumentDTO> result = (List<? extends InstrumentDTO>) soundGoodDb.listInstruments(instrumentType);
+            List<? extends InstrumentDTO> result = soundGoodDb.listInstruments(instrumentType);
             commitOngoingTransaction("Could not list available instruments.");
             return result;
         } catch (Exception e) {
@@ -45,6 +51,30 @@ public class Controller {
         }
     }
 
+    /**
+     * Updates a specified rental in the database with the current date as end date, effectively
+     * terminating the rental.
+     * @param receiptID The id of the receipt for the rental a.k.a the order id
+     * @return A message confirming the termination of the rental
+     * @throws InstrumentException if unable to terminate the rental
+     */
+    public String endRental(String receiptID) throws InstrumentException{
+        try{
+            soundGoodDb.endRental(receiptID);
+            commitOngoingTransaction("Could not end rental");
+            return "Successfully closed rental";
+        }catch(Exception e){
+            throw new InstrumentException("Could not end rental");
+        }
+    }
+
+    /**
+     * Creates a new rental in the database
+     * @param studentPersonalNumber The student's personal number
+     * @param instrumentProductID The instrument id of the instrument to be rented
+     * @return Confirmation message of successful rental
+     * @throws InstrumentException if unable to create the rental
+     */
     public String rentInstrument(String studentPersonalNumber, String instrumentProductID) throws InstrumentException{
         try{
             int amountOfRentals = soundGoodDb.getAmountOfRentalsByStudent(studentPersonalNumber);
@@ -64,17 +94,19 @@ public class Controller {
             soundGoodDb.rentInstrument(studentDbID, instrumentDbID, receipt);
 
             commitOngoingTransaction("Could not rent instrument");
+            return "This is your order number: " +receipt+
+                    "\nUse this when returning the instrument";
         } catch(Exception e){
             throw new InstrumentException("Could not rent an instrument", e);
         }
-        return "Success";
     }
 
     private String createReceiptID(String studentPersonalNumber, String instrumentProductID){
         String date = String.valueOf(java.time.LocalDate.now());
         Random random = new Random();
-        int x = random.nextInt();
+        int x = random.nextInt(0, 300000);
         return ""+x+date+studentPersonalNumber+instrumentProductID;
     }
+
 
 }

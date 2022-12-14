@@ -5,7 +5,7 @@ public class SoundGoodDBException extends Exception {
     /**
      * Create a new instance thrown because of the specified reason and exception.
      *
-     * @param failureMsg    Why the exception was thrown.
+     * @param failureMsg Why the exception was thrown.
      * @param cause The exception that caused this exception to be thrown.
      */
     public SoundGoodDBException(String failureMsg, Throwable cause) {

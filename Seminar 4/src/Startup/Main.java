@@ -1,7 +1,7 @@
 package Startup;
 import View.BlockingInterpreter;
-
 import java.sql.*;
+
 public class Main {
     /**
      * @param args There are no command line arguments.
