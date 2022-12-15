@@ -62,9 +62,12 @@ public class BlockingInterpreter {
                         break;
                     case RENT:
                         //First parameter is personal number. The second is product id of instrument
-                        controller.rentInstrument(cmdLine.getParameter(0), cmdLine.getParameter(1));
+                        String response = controller.rentInstrument(cmdLine.getParameter(0), cmdLine.getParameter(1));
+                        System.out.println(response);
                         break;
                     case TERMINATE:
+                        String feedback = controller.endRental(cmdLine.getParameter(0));
+                        System.out.println(feedback);
                         break;
                     case ILLEGAL_COMMAND:
                         System.out.println("illegal command");
